@@ -14,6 +14,8 @@ parser.add_argument('-iteration', type=int)
 
 args = vars(parser.parse_args())
 
+print('Running iteration #%d for dataset %s...' % (args['iteration'], args['name']))
+
 RESULTS_PATH = os.path.join(os.path.dirname(__file__), 'results')
 TRIAL_PATH = os.path.join(RESULTS_PATH, args['name'])
 
