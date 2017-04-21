@@ -15,6 +15,7 @@ def partition(name):
 
     df = pd.read_csv(os.path.join(ORIGINAL_PATH, name + '.csv'))
     df = df.select(lambda x: not re.search('IlhanActiveness', x), axis=1)
+    df = df.dropna()
     df = df.drop_duplicates()
 
     if name.endswith('1state'):
