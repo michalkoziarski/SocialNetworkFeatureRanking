@@ -3,7 +3,7 @@ import random
 import numpy as np
 
 from sklearn.base import clone
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
 
@@ -43,7 +43,7 @@ def select(X, y, n_generations=100, population_size=500, mutation_prob=0.02, cro
     def evaluate(individual):
         X_train, X_val, y_train, y_val = train_test_split(X, y)
         features = np.array([bool(x) for x in individual])
-        coef_score = score(X_train[:, features], y_train, X_val[:, features], y_val, KNeighborsClassifier())
+        coef_score = score(X_train[:, features], y_train, X_val[:, features], y_val, RandomForestClassifier())
         coef_n_features = float(sum(features)) / len(features)
 
         return weight_score * coef_score - weight_n_features * coef_n_features,

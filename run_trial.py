@@ -5,7 +5,6 @@ import argparse
 from datasets import load
 from feature_selection import select, score
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import MinMaxScaler
 
 
 parser = argparse.ArgumentParser()
@@ -31,10 +30,6 @@ for i in range(5):
     for j in range(2):
         X_train, y_train = partition[j % 2]
         X_test, y_test = partition[(j + 1) % 2]
-
-        scaler = MinMaxScaler().fit(X_train)
-        X_train = scaler.transform(X_train)
-        X_test = scaler.transform(X_test)
 
         mask = select(X_train, y_train, verbose=True)
 
