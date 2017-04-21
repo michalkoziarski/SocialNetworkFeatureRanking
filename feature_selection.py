@@ -19,7 +19,7 @@ def score(X_train, y_train, X_test, y_test, classifier):
     else:
         clf = clone(classifier).fit(X_train, y_train)
 
-        return f1_score(y_test, clf.predict(X_test), average='macro')
+        return f1_score(y_test, clf.predict(X_test), average='weighted')
 
 
 def select(X, y, n_generations=100, population_size=500, mutation_prob=0.02, crossover_prob=0.7, bit_flip_prob=0.05,
