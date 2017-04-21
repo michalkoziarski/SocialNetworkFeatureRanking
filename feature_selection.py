@@ -42,7 +42,7 @@ def select(X, y, n_generations=100, population_size=500, mutation_prob=0.02, cro
     toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
     def evaluate(individual):
-        X_train, X_val, y_train, y_val = train_test_split(X, y)
+        X_train, X_val, y_train, y_val = train_test_split(X, y, stratify=y)
         features = np.array([bool(x) for x in individual])
         coef_score = score(X_train[:, features], y_train, X_val[:, features], y_val, RandomForestClassifier())
         coef_n_features = float(sum(features)) / len(features)
