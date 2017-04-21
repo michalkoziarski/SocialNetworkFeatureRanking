@@ -14,9 +14,12 @@ from deap import tools
 
 
 def score(X_train, y_train, X_test, y_test, classifier):
-    clf = clone(classifier).fit(X_train, y_train)
+    if X_train.shape[1] == 0:
+        return 0.0
+    else:
+        clf = clone(classifier).fit(X_train, y_train)
 
-    return f1_score(y_test, clf.predict(X_test), average='macro')
+        return f1_score(y_test, clf.predict(X_test), average='macro')
 
 
 def select(X, y, n_generations=100, population_size=500, mutation_prob=0.02, crossover_prob=0.7, bit_flip_prob=0.05,
